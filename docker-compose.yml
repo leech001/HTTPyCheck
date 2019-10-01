@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+    telegram_bot:
+        build:
+          context: telegram_bot/
+        restart: always
+        volumes:
+          - "/etc/localtime:/etc/localtime:ro"
+          - "/etc/timezone:/etc/timezone:ro"
+          - "./telegram_bot/application:/opt/application"
+        command: python3 ./main.py
