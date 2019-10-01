@@ -1,14 +1,14 @@
 # Python HTTP(S) check availability sites script over Telegram bot
 
 ## Python script to monitor the availability of HTTP (S) nodes through the return code 200 C notification via Telegram bot.
-(Python скрипт для мониторинга доступности HTTP(S) узлов через возврат кода 200 c уведомлением через Telegram бота.)
+Python скрипт для мониторинга доступности HTTP(S) узлов через возврат кода 200 c уведомлением через Telegram бота.
 
 ## Install (Установка)
 1. Скачайте необходимый репозиторий.
 2. Модифицируйте под ствои нужнды.
 3. Запустите командой sudo docker-compose up -d
 
-##Main settings (Основные настройки)
+## Main settings (Основные настройки)
 Вводим токен telegram бота
 token = 'TOKEN'
 
