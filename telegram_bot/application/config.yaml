@@ -1,0 +1,30 @@
+main:
+  delay: 30
+
+telegram:
+  token: 244516775:AAGZп55654ASsFFpbjyNA9su6gQU-Qs
+  group: 123456
+  proxy:
+    proxy_url: socks5://xxx.xxx.org:4108/
+    username: user
+    password: pass
+
+http:
+  BasicAuth:
+    username: user
+    password: pass
+
+  sites:
+    - http://example.com/
+    - https://example2.com/
+
+
+  auth_sites:
+    - http://example.com/
+
+icmp:
+  timeout: 4
+  timedelay: 100
+
+  hosts:
+    - google.com
