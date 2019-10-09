@@ -1,41 +1,52 @@
-# Python HTTP(S) check availability sites script over Telegram bot
+# The Python HTTP(S) - PING check availability sites over Telegram bot project
 
-## Python script to monitor the availability of HTTP (S) nodes through the return code 200 C notification via Telegram bot.
-Python скрипт для мониторинга доступности HTTP(S) узлов через возврат кода 200 c уведомлением через Telegram бота.
+Python script for checking and monitoring nodes through HTTP and HTTPS requests to nodes with a response code check other than '200'. There is also an additional check of nodes via PING (ICMP).
 
-## Install (Установка)
-1. Скачайте необходимый репозиторий.
-2. Модифицируйте под ствои нужнды.
-3. Запустите командой sudo docker-compose up -d
+## Install and config
+- download the required repository;
 
-## Main settings (Основные настройки)
-Вводим токен telegram бота
-token = 'TOKEN'
 
-По необходимости реквизиты SOCKS5 сервера
-REQUEST_KWARGS = {
-    'proxy_url': 'socks5://proxy.server.org:41000/',
-    'urllib3_proxy_kwargs': {
-        'username': 'user',
-        'password': 'pass',
-    }
-}
+    $ git clone https://github.com/leech001/HTTPyCheck.git
+    $ make
 
-Идентификатор группы для уведомлений
-telegram_group = -1111111
 
-Перечень сайтов для мониторинга
-sites = {'http://xxx.ru/',
-         'https://yyy.ru/ru_RU/'
-         }
+- change dir to HTTPyCheck/telegram_bot/application/ and edit config.yaml file;
 
-Перечень сайтов для мониторинга с аутентификацией
-auth_sites = {'http://zzz.ru:88'
-              }
 
-Реквизиты аутентификации
-auth=aiohttp.BasicAuth('user', 'pass')
+    main:
+        delay: 30   #time to rechecking hosts
 
-Период мониторинга в сек.
-await asyncio.sleep(30)
+    telegram:
+      token: 244516775:AAGZп55654ASsFFpbjyNA9su6gQU-Qs  #T oken for you Telegram BOT
+      group: 123456     # Telegram you ID or group ID 
+      proxy:
+        proxy_url: socks5://xxx.xxx.org:4108/   # Address proxy server for Telegram (специально Роскомнадзора)
+        username: user  # proxy user
+        password: pass  # proxy pass
+    
+    http:
+      BasicAuth:
+        username: user  # user for basic auth if hosta need
+        password: pass  # pass for basic auth if hosta need
+    
+      sites:
+        - http://example.com/   # hosts for monitoring over HTTP or HTTPS
+        - https://example2.com/
+    
+    
+      auth_sites:
+        - http://example.com/   # hosts for monitoring over HTTP or HTTPS with basic auth
+    
+    icmp:
+      timeout: 4        # time out for ping error status (sec)
+      timedelay: 100    # time delay for ping warning status (ms) 
+    
+      hosts:
+        - google.com    # hosts for monitoring over ICMP
 
+
+## Run
+- change dir to /HTTPyCheck and run docker container;
+
+
+    $ sudo docker-compose up -d
