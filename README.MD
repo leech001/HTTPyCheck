@@ -16,17 +16,17 @@ $ git clone https://github.com/leech001/HTTPyCheck.git
         delay: 30   #time to rechecking hosts
 
     telegram:
-      token: 244516775:AAGZп55654ASsFFpbjyNA9su6gQU-Qs  #T oken for you Telegram BOT
+      token: 244516775:AAGZп55654ASsFFpbjyNA9su6gQU-Qs  #Token for you Telegram BOT
       group: 123456     # Telegram you ID or group ID 
       proxy:
-        proxy_url: socks5://xxx.xxx.org:4108/   # Address proxy server for Telegram (специально Роскомнадзора)
+        proxy_url: socks5://xxx.xxx.org:4108/   # Address proxy server for Telegram (специально для Роскомнадзора)
         username: user  # proxy user
         password: pass  # proxy pass
 
     http:
       BasicAuth:
-        username: user  # user for basic auth if hosta need
-        password: pass  # pass for basic auth if hosta need
+        username: user  # user for basic auth if hosts need
+        password: pass  # pass for basic auth if hosts need
       sites:
         - http://example.com/   # hosts for monitoring over HTTP or HTTPS
         - https://example2.com/
