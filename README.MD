@@ -3,14 +3,13 @@
 Python script for checking and monitoring nodes through HTTP and HTTPS requests to nodes with a response code check other than '200'. There is also an additional check of nodes via PING (ICMP).
 
 ## Install and config
-- download the required repository;
+- Download the required repository;
 
+```bash
+$ git clone https://github.com/leech001/HTTPyCheck.git
+```
 
-    $ git clone https://github.com/leech001/HTTPyCheck.git
-    $ make
-
-
-- change dir to HTTPyCheck/telegram_bot/application/ and edit config.yaml file;
+- Change dir to HTTPyCheck/telegram_bot/application/ and edit config.yaml file;
 
 ```yaml
     main:
@@ -43,7 +42,7 @@ Python script for checking and monitoring nodes through HTTP and HTTPS requests 
 ```
 
 ## Run
-- change dir to /HTTPyCheck and run docker container;
-
-
+- Change dir to /HTTPyCheck and run docker container;
+```bash
     $ sudo docker-compose up -d
+```
