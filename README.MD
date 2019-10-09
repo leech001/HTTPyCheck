@@ -17,7 +17,7 @@ $ git clone https://github.com/leech001/HTTPyCheck.git
 
     telegram:
       token: 244516775:AAGZп55654ASsFFpbjyNA9su6gQU-Qs  #Token for you Telegram BOT
-      group: 123456     # Telegram you ID or group ID 
+      group: 123456     # Telegram you ID or group ID (use command for BOT /start
       proxy:
         proxy_url: socks5://xxx.xxx.org:4108/   # Address proxy server for Telegram (специально для Роскомнадзора)
         username: user  # proxy user
@@ -45,4 +45,10 @@ $ git clone https://github.com/leech001/HTTPyCheck.git
 - Change dir to /HTTPyCheck and run docker container;
 ```bash
     $ sudo docker-compose up -d
+```
+
+## Telegram BOT command
+```
+/start  # Print you ID or group ID need you for config
+/list   # Print monitorng hosts
 ```
