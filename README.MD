@@ -15,7 +15,6 @@ Python script for checking and monitoring nodes through HTTP and HTTPS requests 
 
     main:
         delay: 30   #time to rechecking hosts
-
     telegram:
       token: 244516775:AAGZп55654ASsFFpbjyNA9su6gQU-Qs  #T oken for you Telegram BOT
       group: 123456     # Telegram you ID or group ID 
@@ -23,20 +22,15 @@ Python script for checking and monitoring nodes through HTTP and HTTPS requests 
         proxy_url: socks5://xxx.xxx.org:4108/   # Address proxy server for Telegram (специально Роскомнадзора)
         username: user  # proxy user
         password: pass  # proxy pass
-    
     http:
       BasicAuth:
         username: user  # user for basic auth if hosta need
         password: pass  # pass for basic auth if hosta need
-    
       sites:
         - http://example.com/   # hosts for monitoring over HTTP or HTTPS
         - https://example2.com/
-    
-    
       auth_sites:
         - http://example.com/   # hosts for monitoring over HTTP or HTTPS with basic auth
-    
     icmp:
       timeout: 4        # time out for ping error status (sec)
       timedelay: 100    # time delay for ping warning status (ms) 
