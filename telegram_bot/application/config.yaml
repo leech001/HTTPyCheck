@@ -10,17 +10,13 @@ telegram:
     password: pass
 
 http:
-  BasicAuth:
-    username: user
-    password: pass
-
   sites:
-    - http://example.com/
+    - site: http://example.com/
+      username: user
+      password: pass
+    - http://example1.com/
     - https://example2.com/
 
-
-  auth_sites:
-    - http://example.com/
 
 icmp:
   timeout: 4

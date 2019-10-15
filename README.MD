@@ -19,19 +19,20 @@ $ git clone https://github.com/leech001/HTTPyCheck.git
       token: 244516775:AAGZп55654ASsFFpbjyNA9su6gQU-Qs  #Token for you Telegram BOT
       group: 123456     # Telegram you ID or group ID (use command for BOT /start
       proxy:
-        proxy_url: socks5://xxx.xxx.org:4108/   # Address proxy server for Telegram (специально для Роскомнадзора)
+
+Delete this block if proxy not use
+#####
+        proxy_url: socks5://xxx.xxx.org:4108/ # Address proxy server for Telegram (специально для Роскомнадзора)
         username: user  # proxy user
         password: pass  # proxy pass
+#####
 
     http:
-      BasicAuth:
-        username: user  # user for basic auth if hosts need
-        password: pass  # pass for basic auth if hosts need
       sites:
-        - http://example.com/   # hosts for monitoring over HTTP or HTTPS
-        - https://example2.com/
-      auth_sites:
-        - http://example.com/   # hosts for monitoring over HTTP or HTTPS with basic auth
+        - site: http://example.com/   # hosts for monitoring over HTTP or HTTPS with basic auth
+          username: user  # user for basic auth if hosts need
+          password: pass  # pass for basic auth if hosts need
+        - https://example1.com/ # hosts for monitoring over HTTP or HTTPS
 
     icmp:
       timeout: 4        # time out for ping error status (sec)
@@ -50,5 +51,5 @@ $ git clone https://github.com/leech001/HTTPyCheck.git
 ## Telegram BOT command
 ```
 /start  # Print you ID or group ID need you for config
-/list   # Print monitorng hosts
+/list   # Print monitoring hosts
 ```

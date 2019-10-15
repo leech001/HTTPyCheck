@@ -10,15 +10,16 @@ with open("config.yaml", 'r') as yamlfile:
 
 telegram_group = config['telegram']['group']
 
-REQUEST_KWARGS = {
-    'proxy_url': config['telegram']['proxy']['proxy_url'],
-    'urllib3_proxy_kwargs': {
-        'username': config['telegram']['proxy']['username'],
-        'password': config['telegram']['proxy']['password'],
-    }
-}
-
-updater = Updater(token=config['telegram']['token'], use_context=True, request_kwargs=REQUEST_KWARGS)
+if isinstance(config['telegram']['proxy'], dict):
+    REQUEST_KWARGS = {'proxy_url': config['telegram']['proxy']['proxy_url'],
+                      'urllib3_proxy_kwargs': {
+                      'username': config['telegram']['proxy']['username'],
+                      'password': config['telegram']['proxy']['password'],
+                       }
+                      }
+    updater = Updater(token=config['telegram']['token'], use_context=True, request_kwargs=REQUEST_KWARGS)
+else:
+    updater = Updater(token=config['telegram']['token'], use_context=True)
 dispatcher = updater.dispatcher
 
 
@@ -38,19 +39,14 @@ async def fetch(session, site):
 async def check_http():
     while True:
         for host in config['http']['sites']:
-            async with aiohttp.ClientSession() as session:
-                await fetch(session, host)
-        print(' ')
-        await asyncio.sleep(config['main']['delay'])
-
-
-async def check_auth_http():
-    while True:
-        for host in config['http']['auth_sites']:
-            async with aiohttp.ClientSession(auth=aiohttp.BasicAuth(
-                    config['http']['BasicAuth']['username'],
-                    config['http']['BasicAuth']['password'])) as session:
-                await fetch(session, host)
+            if isinstance(host, dict):
+                async with aiohttp.ClientSession(auth=aiohttp.BasicAuth(
+                        host['username'],
+                        host['password'])) as session:
+                    await fetch(session, host['site'])
+            else:
+                async with aiohttp.ClientSession() as session:
+                    await fetch(session, host)
         print(' ')
         await asyncio.sleep(config['main']['delay'])
 
@@ -76,10 +72,13 @@ def list_group(update, context):
     message = 'На мониторинге следующие ресурсы:' + '\n'
     if config['http']['sites'] is not None:
         for host in config['http']['sites']:
-            message = message + str(host) + '\n'
+            if isinstance(host, dict):
+                message = message + str(host['site']) + '\n'
+            else:
+                message = message + str(host) + '\n'
 
-    if config['http']['auth_sites'] is not None:
-        for host in config['http']['auth_sites']:
+    if config['icmp']['hosts'] is not None:
+        for host in config['icmp']['hosts']:
             message = message + str(host) + '\n'
     context.bot.send_message(chat_id=update.message.chat_id, text=message)
 
@@ -92,8 +91,6 @@ try:
     loop = asyncio.get_event_loop()
     if config['http']['sites'] is not None:
         loop.create_task(check_http())
-    if config['http']['auth_sites'] is not None:
-        loop.create_task(check_auth_http())
     if config['icmp']['hosts'] is not None:
         loop.create_task(check_icmp())
     loop.run_forever()
