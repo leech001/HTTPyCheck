@@ -39,14 +39,14 @@ async def fetch(session, site):
 async def check_http():
     while True:
         for host in config['http']['sites']:
-            if isinstance(host, dict):
+            if 'username' in host and host['username'] is not None and host['password'] is not None:
                 async with aiohttp.ClientSession(auth=aiohttp.BasicAuth(
                         host['username'],
                         host['password'])) as session:
                     await fetch(session, host['site'])
             else:
                 async with aiohttp.ClientSession() as session:
-                    await fetch(session, host)
+                    await fetch(session, host['site'])
         print(' ')
         await asyncio.sleep(config['main']['delay'])
 

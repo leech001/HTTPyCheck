@@ -32,7 +32,7 @@ Delete this block if proxy not use
         - site: http://example.com/   # hosts for monitoring over HTTP or HTTPS with basic auth
           username: user  # user for basic auth if hosts need
           password: pass  # pass for basic auth if hosts need
-        - https://example1.com/ # hosts for monitoring over HTTP or HTTPS
+        - site: https://example1.com/ # hosts for monitoring over HTTP or HTTPS
 
     icmp:
       timeout: 4        # time out for ping error status (sec)

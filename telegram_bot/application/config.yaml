@@ -14,8 +14,8 @@ http:
     - site: http://example.com/
       username: user
       password: pass
-    - http://example1.com/
-    - https://example2.com/
+    - site: http://example1.com/
+    - site: https://example2.com/
 
 
 icmp:
