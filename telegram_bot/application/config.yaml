@@ -10,6 +10,7 @@ telegram:
     password: pass
 
 http:
+  timeout: 10
   sites:
     - site: http://example.com/
       username: user

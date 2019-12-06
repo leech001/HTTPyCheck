@@ -9,6 +9,7 @@ with open("config.yaml", 'r') as yamlfile:
     config = yaml.safe_load(yamlfile)
 
 telegram_group = config['telegram']['group']
+http_timeout = aiohttp.ClientTimeout(total=config['http']['timeout'])
 
 if isinstance(config['telegram']['proxy'], dict):
     REQUEST_KWARGS = {'proxy_url': config['telegram']['proxy']['proxy_url'],
@@ -25,7 +26,7 @@ dispatcher = updater.dispatcher
 
 async def fetch(session, site):
     try:
-        async with session.get(site, ssl=False) as resp:
+        async with session.get(site, timeout=http_timeout, ssl=False) as resp:
             if resp.status != 200:
                 updater.bot.send_message(chat_id=config['telegram']['group'], text='Узел %s в статусе HTTP ' % site + str(resp.status))
             print(site, resp.status)

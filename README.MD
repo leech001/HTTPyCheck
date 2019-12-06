@@ -28,6 +28,7 @@ Delete this block if proxy not use
 #####
 
     http:
+      timeout: 1  # HTTP(s) timeout (sec) 
       sites:
         - site: http://example.com/   # hosts for monitoring over HTTP or HTTPS with basic auth
           username: user  # user for basic auth if hosts need
