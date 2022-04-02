@@ -13,7 +13,7 @@ $ git clone https://github.com/leech001/HTTPyCheck.git
 
 ```yaml
     main:
-        delay: 30   #time to rechecking hosts
+        repeat_period: 30   #time to rechecking hosts (sec)
 
     telegram:
       token: 244516775:AAGZп55654ASsFFpbjyNA9su6gQU-Qs  #Token for you Telegram BOT
@@ -28,6 +28,7 @@ Delete this block if proxy not use
 #####
 
     http:
+      repeat: 5   # number of rechecks
       timeout: 1  # HTTP(s) timeout (sec) 
       sites:
         - site: http://example.com/   # hosts for monitoring over HTTP or HTTPS with basic auth

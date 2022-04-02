@@ -1,5 +1,6 @@
 main:
-  delay: 30
+  delay: 300
+  repeat_period: 300
 
 telegram:
   token: 244516775:AAGZп55654ASsFFpbjyNA9su6gQU-Qs
@@ -10,6 +11,7 @@ telegram:
     password: pass
 
 http:
+  repeat: 5
   timeout: 10
   sites:
     - site: http://example.com/
@@ -17,7 +19,6 @@ http:
       password: pass
     - site: http://example1.com/
     - site: https://example2.com/
-
 
 icmp:
   timeout: 4
