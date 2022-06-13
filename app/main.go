@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -62,6 +63,11 @@ func main() {
 	go botUpdate(bot, config.Http.Sites, config.Icmp.Hosts)
 	bot.Debug = true
 
+	// Running HTTP checker
+	for _, site := range config.Http.Sites {
+		go httpCheck(bot, config.Telegram.Group, site.Url)
+	}
+
 	// Running ICMP checker
 	for _, host := range config.Icmp.Hosts {
 		go pinger(bot, config.Telegram.Group, host, config.Icmp.Count, config.Icmp.Update, config.Icmp.Timeout, config.Icmp.Timedelay)
@@ -74,6 +80,17 @@ func main() {
 		time.Sleep(1 * time.Second)
 	}
 
+}
+
+func httpCheck(bot *tgbotapi.BotAPI, group int64, site string) {
+	resp, err := http.Get("http://example.com/")
+	if err != nil {
+		// handle error
+	}
+	if resp.StatusCode != 200 {
+		msg := tgbotapi.NewMessage(group, "Site "+site+" HTTP error. Code "+strconv.Itoa(resp.StatusCode))
+		bot.Send(msg)
+	}
 }
 
 func pinger(bot *tgbotapi.BotAPI, group int64, host string, count uint8, update uint16, timeout uint8, timedelay uint16) {
