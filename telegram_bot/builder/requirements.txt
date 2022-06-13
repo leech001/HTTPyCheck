@@ -1,5 +1,0 @@
-python-telegram-bot
-aiohttp
-PySocks
-pyyaml
-ping3

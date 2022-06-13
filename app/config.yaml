@@ -1,0 +1,25 @@
+main:
+  repeat_period: 300
+
+telegram:
+  token: none
+  group: none
+
+http:
+  repeat: 5
+  timeout: 3
+  sites:
+    - url: ya.ru
+      elements:
+        - "body"
+        - "widgettitle"
+    - url: google.com
+
+icmp:
+  count: 10
+  update: 300
+  timeout: 4
+  timedelay: 200
+  hosts:
+    - ya.ru
+    - google.com
