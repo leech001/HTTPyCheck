@@ -1,3 +1,5 @@
+# Warning! Repository is deprecated please use the updated to GOLANG version [telegram-site-monitor](https://github.com/leech001/telegram-site-monitor)
+
 # The Python HTTP(S) - PING check availability sites over Telegram bot project
 
 Python script for checking and monitoring nodes through HTTP and HTTPS requests to nodes with a response code check other than '200'. There is also an additional check of nodes via PING (ICMP).
